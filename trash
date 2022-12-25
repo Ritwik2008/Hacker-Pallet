@@ -1,0 +1,40 @@
+/*function loadCode(){
+    let fileList = JSON.parse(localStorage.getItem(file_key))
+    for(let i=0; i<Object.keys(fileList).length; i++){
+        let filename = Object.keys(fileList)[i]
+        let code = fileList[filename]
+        for (let i = 0; i < fileNav.children.length; i++) {
+            let child = fileNav.children[i]
+            if (child.getAttribute("data-filebar") === filename) break
+            else if (i === fileNav.children.length -1){
+                let item = document.createElement("li");
+                fileNav.append(item);
+                item = fileNav.children[fileNav.children.length-1]
+                item.setAttribute("data-filebar",filename)
+                item.classList.add("file-select-btn")
+                item.innerHTML = `<button class="file-nav-li-btn">${filename}</button>`
+                item.innerHTML += `
+                    <div class="flex">
+                    \t<i class="fa-solid fa-plus add-icon""></i>
+                    \t<i class="fa-solid fa-trash-can delete-icon"}></i>
+                    </div>
+                    `
+                // item.innerHTML = `<button class="file-nav-li-btn" onclick="getFile(${"`"+filename+"`"})">${filename}</button><i class="fa-solid fa-trash-can delete-icon" onclick=deleteFile(${"`"+filename+"`"})></i>`
+                item.children[0].onclick = () => editor.value = code
+                item.children[1].children[1].onclick = () => deleteFile(filename)
+                item.children[1].children[0].onclick = () => addCode(filename)
+            }
+        }
+    }}*/
+            // console.log(file,i,code)
+// document.getElementsByClassName("add-icon")[document.getElementsByClassName("add-icon").length - 1].onclick = editor.value += 
+// document.getElementsByClassName("add-icon")[document.getElementsByClassName("add-icon").length - 2].onclick = editor.value += giveDemo(`JS demo`)
+// document.getElementsByClassName("add-icon")[document.getElementsByClassName("add-icon").length - 1].onclick = editor.value += giveDemo(`html demo`)
+// document.getElementsByClassName("add-icon")[document.getElementsByClassName("add-icon").length - 2].onclick = editor.value += giveDemo(`JS demo`)
+// let hideLangNav = () => {langNav.style.display =  'none';console.log(langNav.style.display);}
+// set textarea value to: text before caret + tab + text after caret
+// put caret at right position again
+// let Scripts = ((language === "JavaScript" || language === "HTML")) `let func = new Function(${editor.value});`
+// localStorage.geItem(file_key,'{}')
+// console.log(item.children[0])
+// item.innerHTML = `<button class="file-nav-li-btn" onclick="getFile(${"`"+file+"`"})">${file}</button><i class="fa-solid fa-trash-can delete-icon" onclick=deleteFile(${"`"+file+"`"})></i>`
