@@ -90,7 +90,39 @@ function SaveCode(_save_name){
     console.log("File saved :"+_save_name)
     loadCode()
 }
-function loadCode(){
+function loadCode() {
+    let fileList = JSON.parse(localStorage.getItem(file_key))
+    function addFile (_file,_code) {
+        let item = document.createElement("li");
+        fileNav.prepend(item);
+        item = fileNav.children[0]
+        item.setAttribute("data-filename",_file)
+        item.classList.add("file-select-btn")
+        item.innerHTML = `<button class="file-nav-li-btn">${_file}</button>`
+        item.innerHTML += `
+            <div class="flex">
+            \t<i class="fa-solid fa-plus add-icon"></i>
+            \t<i class="fa-solid fa-trash-can delete-icon"}></i>
+            </div>
+            `
+        // console.log(item.children[0])
+        // item.innerHTML = `<button class="file-nav-li-btn" onclick="getFile(${"`"+file+"`"})">${file}</button><i class="fa-solid fa-trash-can delete-icon" onclick=deleteFile(${"`"+file+"`"})></i>`
+        item.children[0].onclick = () => editor.value = _code
+        item.children[1].children[1].onclick = () => deleteFile(_file)
+        item.children[1].children[0].onclick = () => addCode(_file)
+    }
+    for (let i = 0; i < Object.keys(fileList).length; i++) {
+        let file = Object.keys(fileList)[i]
+        let code = fileList[file]
+        for (let i = fileNav.children.length -1; i >= 0; i--) {
+            let child = fileNav.children[i]
+            if (child.getAttribute("data-filename") === file) break
+            else if (i == 0) { addFile(file, code); break }
+            // console.log(file,i,code)
+        }
+    }
+}
+/*function loadCode(){
     let fileList = JSON.parse(localStorage.getItem(file_key))
     for(let i=0; i<Object.keys(fileList).length; i++){
         let filename = Object.keys(fileList)[i]
@@ -118,7 +150,7 @@ function loadCode(){
             }
         }
     }
-}
+}*/
 function getFile(filename) { 
     let fileList = JSON.parse(localStorage.getItem(file_key))
     code = fileList[filename]
@@ -136,7 +168,7 @@ function deleteFile(filename) {
     delete fileList[filename]
     localStorage.setItem(file_key, JSON.stringify(fileList))
     for (child of fileNav.children) {
-        if (child.getAttribute('data-filebar') === filename) {
+        if (child.getAttribute('data-filename') === filename) {
             fileNav.removeChild(child)
             loadCode()
         }
@@ -151,6 +183,12 @@ const addText = (newText, el = editor) => {
     const [start, end] = [el.selectionStart, el.selectionEnd];
     el.setRangeText(newText, start, end, 'select');
 }
-document.getElementsByClassName("add-icon")[document.getElementsByClassName("add-icon").length - 1].onclick = editor.value += giveDemo(`html demo`)
-document.getElementsByClassName("add-icon")[document.getElementsByClassName("add-icon").length - 2].onclick = editor.value += giveDemo(`JS demo`)
 window.onresize()
+// document.getElementsByClassName("add-icon")[document.getElementsByClassName("add-icon").length - 1].onclick = editor.value += 
+// document.getElementsByClassName("add-icon")[document.getElementsByClassName("add-icon").length - 2].onclick = editor.value += giveDemo(`JS demo`)
+// document.getElementsByClassName("add-icon")[document.getElementsByClassName("add-icon").length - 1].onclick = editor.value += giveDemo(`html demo`)
+// document.getElementsByClassName("add-icon")[document.getElementsByClassName("add-icon").length - 2].onclick = editor.value += giveDemo(`JS demo`)
+fileNav.children[fileNav.children.length - 2].children[0].onclick = () => editor.value = giveDemo(`html demo`)
+fileNav.children[fileNav.children.length - 2].children[1].onclick = () => editor.value += giveDemo(`html demo`)
+fileNav.children[fileNav.children.length - 1].children[0].onclick = () => editor.value = giveDemo(`JS demo`)
+fileNav.children[fileNav.children.length - 1].children[1].onclick = () => editor.value += giveDemo(`JS demo`)
