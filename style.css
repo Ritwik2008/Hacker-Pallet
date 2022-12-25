@@ -71,19 +71,21 @@ body{background:var(--back);}
 }
 #file-popup {margin: auto;}
 #file-nav li {display: inline-flex;}
+#lang-popup {margin: auto;}
 #lang-nav li:hover,#lang-nav li > button:hover,#file-nav li > button:hover {background-color: var(--fore);color: var(--back);}
 #lang-nav li > button ,#file-nav li > button {padding:0 0.2vw;width:100%;height:100%;background-color: var(--back);color: var(--fore);border:none;text-align: left;}
 #lang-nav::-webkit-scrollbar ,#file-nav::-webkit-scrollbar {background-color: transparent;}
 #lang-nav::-webkit-scrollbar-corner ,#file-nav::-webkit-scrollbar-corner {outline:none;background-color: transparent;visibility:none;}
 #lang-nav::-webkit-scrollbar-thumb ,#file-nav::-webkit-scrollbar-thumb {background-color:var(--fore);border-radius:calc(10 * var(--unit));}
 #lang-nav {
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    width:30vmin;
+    width:40vmin;
     height:15vmin;
-    translate: 19vw 5vh ;
+    margin:auto;
+    /* translate: 19vw 5vh ; */
 } #lang-nav li {height:100%;}
 #setting-popup {
     width:20vmax;

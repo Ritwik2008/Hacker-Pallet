@@ -19,7 +19,7 @@ const UnitValueInput = document.getElementById("unit-value-input");
 const saveInput = document.getElementById("save-name-input");
 const langSelect = document.getElementById("lang-select");
 const fileDialog = document.getElementById("file-popup");
-// const fileDialog = document.getElementById("file-popup");
+const langDialog = document.getElementById("lang-popup");
 const langNav = document.getElementById("lang-nav");
 window.onresize = () => {document.documentElement.style.setProperty('--unit', unit * unit/window.innerWidth+"px")}
 editor.addEventListener('keydown', function(e) {
@@ -76,9 +76,9 @@ run_btn.addEventListener("click", () => {
 loadBtn.addEventListener('click', () => {loadCode();fileDialog.showModal()})
 settingBtn.addEventListener('click', () => setting_popup.showModal())
 settingSubmitBtn.addEventListener('click', settings)
-langSelect.addEventListener('click', () => {langNav.style.display = langNav.style.display !== 'flex' ? 'flex': 'none';editor.classList.toggle("z-hide")})
-langNav.children[0].addEventListener('click', () => {langNav.style.display = 'none';language = "JavaScript"})
-langNav.children[1].addEventListener('click', () => {langNav.style.display = 'none';language = "HTML"})
+langSelect.addEventListener('click', () => {langDialog.showModal();})
+langNav.children[0].addEventListener('click', () => {langDialog.close();language = "JavaScript"})
+langNav.children[1].addEventListener('click', () => {langDialog.close();language = "HTML"})
 const file_key = "hacker-prompt-saved-files-key-code"
 if (localStorage.getItem(file_key) === null) {localStorage.setItem(file_key,JSON.stringify({"html demo":`<!DOCTYPE html>\n<html lang="en">\n<head>\n\t<meta charset="UTF-8">\n\t<meta http-equiv="X-UA-Compatible" content="IE=edge">\n\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\n\t<title>Document</title>\n</head>\n<body>\n\t<h1>Hello, World!</h1>\n</body>\n</html>\n`,"JS demo":"let name = prompt(\"enter your name\");\nalert(\"Hello, \" + name)"}))}
 // localStorage.geItem(file_key,'{}')

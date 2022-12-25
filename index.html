@@ -13,12 +13,7 @@
         <ol>
             <li class="toolbar-option">
                 <button class="toolbar-option-btn" id="run-btn">Run</button>
-                <button id="lang-select"><i class="fa-solid fa-angle-down"></i>
-                </button>
-                    <ul id="lang-nav" class="hide-nav">
-                        <li><button class="langNavBtns">JavaScript</button></li>
-                        <li><button class="langNavBtns">HTML</button></li>
-                    </ul>
+                <button id="lang-select"><i class="fa-solid fa-angle-down"></i></button>
             </li>
             <li class="toolbar-option"><button class="toolbar-option-btn" id="save-btn">Save</button></li>
             <li class="toolbar-option"><button class="toolbar-option-btn" id="load-btn">Load File</button>
@@ -28,7 +23,14 @@
             <li class="toolbar-option"><button class="toolbar-option-btn"><i class="fa-solid fa-lock"></i> Import</button></li>
         </ol>
     </nav>
-        <dialog id="file-popup">
+        <dialog class="selection-popup" id="lang-popup">
+            <ul id="lang-nav">
+                <!-- <h6>Choose a Language</h6> -->
+                <li><button class="langNavBtns">JavaScript</button></li>
+                <li><button class="langNavBtns">HTML</button></li>
+            </ul>
+        </dialog>
+        <dialog class="selection-popup" id="file-popup">
             <ol id="file-nav" class="show-nav">
                 <li data-filebar="zdxc" class="file-select-btn">
                     <button class="file-nav-li-btn" onclick="()=>{editor.value = giveDemo(`html demo`)}">
@@ -50,13 +52,13 @@
     <div id="prompt-body">
         <textarea id="code-prompt" spellcheck="false" grammarcheck="false"></textarea>
     </div>
-    <dialog id="save-popup">
+    <dialog class="selection-popup" id="save-popup">
         <div>
             <form method="dialog"><input type="text" id="save-name-input" ><button type="submit">SAVE</button></form>
         </div>
     </dialog>
 </body>
-    <dialog id="setting-popup">
+    <dialog class="selection-popup" id="setting-popup">
         <div>
             <form method="dialog" >
                 <div id="color-selection">
