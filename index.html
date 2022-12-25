@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacker Prompt</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav id="toolbar">
+        <ol>
+            <li class="toolbar-option">
+                <button class="toolbar-option-btn" id="run-btn">Run</button>
+                <button id="lang-select"><i class="fa-solid fa-angle-down"></i>
+                </button>
+                    <ul id="lang-nav" class="hide-nav">
+                        <li><button class="langNavBtns">JavaScript</button></li>
+                        <li><button class="langNavBtns">HTML</button></li>
+                    </ul>
+            </li>
+            <li class="toolbar-option"><button class="toolbar-option-btn" id="save-btn">Save</button></li>
+            <li class="toolbar-option"><button class="toolbar-option-btn" id="load-btn">Load File</button>
+
+            </li>
+            <li class="toolbar-option"><button class="toolbar-option-btn" id="setting-btn"> Settings</button></li>
+            <li class="toolbar-option"><button class="toolbar-option-btn"><i class="fa-solid fa-lock"></i> Import</button></li>
+        </ol>
+    </nav>
+        <dialog id="file-popup">
+            <ol id="file-nav" class="show-nav">
+                <li data-filebar="zdxc" class="file-select-btn">
+                    <button class="file-nav-li-btn" onclick="()=>{editor.value = giveDemo(`html demo`)}">
+                        html demo
+                    </button>
+                    <i class="fa-solid fa-plus add-icon" onclick="()=>{editor.value += giveDemo(`html demo`)}"></i>
+                    <!-- <i class="fa-solid fa-trash-can delete-icon" onclick="deleteFile(`zdxc`)"></i> -->
+                </li>
+                <li data-filebar="zdxc" class="file-select-btn">
+                    <button class="file-nav-li-btn" onclick="()=>{editor.value = giveDemo(`JS demo`)}">
+                        JS demo
+            
+                    </button>
+                    <i class="fa-solid fa-plus add-icon" onclick="()=>{editor.value += giveDemo(`JS demo`)}"></i>
+                    <!-- <i class="fa-solid fa-trash-can delete-icon" onclick="deleteFile(`zdxc`)"></i> -->
+                </li>
+            </ol>
+        </dialog>
+    <div id="prompt-body">
+        <textarea id="code-prompt" spellcheck="false" grammarcheck="false"></textarea>
+    </div>
+    <dialog id="save-popup">
+        <div>
+            <form method="dialog"><input type="text" id="save-name-input" ><button type="submit">SAVE</button></form>
+        </div>
+    </dialog>
+</body>
+    <dialog id="setting-popup">
+        <div>
+            <form method="dialog" >
+                <div id="color-selection">
+                    <h2>Theme Setting</h2>
+                    <div class="color-input">
+                        <label for="[id='back-color-input']">Background Color</label>
+                        <input type="color" id="back-color-input" value="#000000">
+                    </div>
+                    <div class="color-input">
+                        <label for="[id='fore-color-input']">Foreground Color</label>
+                        <input type="color" id="fore-color-input" value="#00ff00">
+                    </div>
+                    <div class="unit-input">
+                        <label for="[id='unit-value-input']">Unit Value</label>
+                        <input type="number" id="unit-value-input" value="1">
+                    </div>
+                        <br>
+                        <button type="submit" id="setting-submit-btn">Apply</button>
+                </div>
+            </form>
+        </div>
+    </dialog>
+</html>
+<script defer src="index.js" ></script>
+<script src="https://kit.fontawesome.com/aee2b247f2.js" crossorigin="anonymous"></script>
