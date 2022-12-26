@@ -39,36 +39,20 @@ editor.addEventListener('keydown', function(e) {
 save_btn.addEventListener("click", () => save_popup.showModal())
 save_popup.addEventListener("close", () => SaveCode(saveInput.value))
 run_btn.addEventListener("click", () => {
-    if (language == "JavaScript" || language == "HTML") {
-        if (language === "JavaScript") Scripts = `let func = new Function(${editor.value});func()`
-        else if (language === "HTML") Scripts = `document.write(${"`"+editor.value+"`"});`
-        else Scripts = `let Scripts = ${editor.value};`
-        try {
-            let newWindow = window.open()
-            newWindow.document.write(
-            `
-            <!DOCTYPE html>
-            <html lang="en">
-            <head>
-            <meta charset="UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Document</title>
-            </head>
-            <body>
-                
-            </body>
-            <script>
-                ${Scripts}
-            </script>
-            <script>console.log("Hello, World")</script>
-            </html>
-            `
-            )
+    if (language == "HTML") {
+        try { 
+            let newDOM = window.open();
+            newDOM.document.write(editor.value); 
         } catch (e) {
-            alert(`Error Caught during Execution :\n${e.message}`)
+             alert("error :"+e.message);
         }
-    }
+    } else if ( language == "JavaScript") {
+        try { 
+            let newDOM = window.open();
+            newDOM.document.write("<script>"+editor.value+"</script>");
+        } catch (e) {alert("error :"+e.message);}
+    } else alert("Unknown language: "+language);
+
 })
 loadBtn.addEventListener('click', () => {loadCode();fileDialog.showModal()})
 settingBtn.addEventListener('click', () => setting_popup.showModal())
@@ -148,6 +132,7 @@ const addText = (newText, el = editor) => {
     const [start, end] = [el.selectionStart, el.selectionEnd];
     el.setRangeText(newText, start, end, 'select');
 }
+const repr = (text) => {return JSON.stringify({"":text}).slice(5,-2)}
 window.onresize()
 tips.showModal();
 fileNav.children[fileNav.children.length - 2].children[0].onclick = () => editor.value = giveDemo(`html demo`)
