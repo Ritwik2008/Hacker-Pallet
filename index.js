@@ -49,7 +49,7 @@ run_btn.addEventListener("click", () => {
     } else if ( language == "JavaScript") {
         try { 
             let newDOM = window.open();
-            newDOM.document.write("<script>"+editor.value+"</script>");
+            newDOM.document.write("<script>"+editor.value.replace("<script>","'<'+'script>'").replace("</script>","'</'+'script>'")+"</script>");
         } catch (e) {alert("error :"+e.message);}
     } else alert("Unknown language: "+language);
 
